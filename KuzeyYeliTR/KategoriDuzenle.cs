@@ -13,6 +13,7 @@ namespace KuzeyYeliTR
 {
     public partial class KategoriDuzenle : Form
     {
+        public int SonEklenenId { get; private set; }
         SqlConnection con = new SqlConnection("server=.; database=KuzeyYeli; uid=sa; pwd=123");
         public Kategori Kategori { get; set; }
         public KategoriDuzenle()
@@ -33,11 +34,24 @@ namespace KuzeyYeliTR
         private void btnUrunTamam_Click(object sender, EventArgs e)
         {
             string ad = txtKategoriAd.Text.Trim();
-            if (txtKategoriId.Text.Length <= 0)
+            if (ad == "")
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Kategoriler(KategoriAd) VALUES(@p1)", con);
+                MessageBox.Show("Önce bir kategori adı girmelisiniz");
+                return;
+            }
+            if (Kategori == null)
+            {
+                var cmd = new SqlCommand(
+                    "INSERT INTO Kategoriler(KategoriAd) VALUES(@p1); " +
+                    "SELECT SCOPE_IDENTITY();", con);
                 cmd.Parameters.AddWithValue("@p1", ad);
-                cmd.ExecuteNonQuery();
+                SonEklenenId = (int)(decimal)cmd.ExecuteScalar();
+
+                // if (txtKategoriId.Text.Length <= 0)
+
+                // SqlCommand cmd = new SqlCommand("INSERT INTO Kategoriler(KategoriAd) VALUES(@p1)", con);
+                //cmd.Parameters.AddWithValue("@p1", ad);
+                // cmd.ExecuteNonQuery();
                 txtKategoriAd.Clear();
                 txtKategoriId.Clear();
                 DialogResult = DialogResult.OK;

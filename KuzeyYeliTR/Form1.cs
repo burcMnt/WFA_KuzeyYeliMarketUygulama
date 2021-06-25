@@ -18,6 +18,7 @@ namespace KuzeyYeliTR
         {
             con.Open();
             InitializeComponent();
+            dgvUrunler.AutoGenerateColumns = false; // oto sütün oluşturmayı durdur
             KategorileriYukle();
         }
 
@@ -54,7 +55,7 @@ namespace KuzeyYeliTR
         private void UrunleriListele(int kategoriId)
         {
             var cmd = new SqlCommand(
-                "SELECT Id, UrunAd, BirimFiyat, StokAdet FROM Urunler " +
+                "SELECT Id, UrunAd, BirimFiyat, StokAdet,KategoriId,Resim FROM Urunler " +
                 "WHERE KategoriId = @p1", con);
             cmd.Parameters.AddWithValue("@p1", kategoriId);
             var dr = cmd.ExecuteReader();
@@ -68,6 +69,8 @@ namespace KuzeyYeliTR
                     UrunAd = (string)dr["UrunAd"],
                     BirimFiyat = (decimal)dr["BirimFiyat"],
                     StokAdet = (int)dr["StokAdet"],
+                    KategoriId=(int)dr["KategoriId"],
+                    Resim=dr[5] is DBNull ? null : (byte[])dr[5]
 
                 });
             }
@@ -77,12 +80,29 @@ namespace KuzeyYeliTR
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult cevap = new KategoriDuzenle().ShowDialog();
+            KategoriDuzenle frm = new KategoriDuzenle();
+            DialogResult cevap = frm.ShowDialog();
+
             if (cevap == DialogResult.OK)
             {
                 KategorileriYukle();
+                KategoriyiSec(frm.SonEklenenId);
             }
 
+        }
+
+        private void KategoriyiSec(int sonEklenenId)
+        {
+            for (int i = 0; i < lstKategoriler.Items.Count; i++)
+            {
+                Kategori kat = (Kategori)lstKategoriler.Items[i];
+
+                if (kat.KategoriId == sonEklenenId)
+                {
+                    lstKategoriler.SelectedIndex = i;
+                    return;
+                }
+            }
         }
 
         private void btnUrunEkle_Click(object sender, EventArgs e)
@@ -118,6 +138,7 @@ namespace KuzeyYeliTR
                 if (cevap == DialogResult.OK)
                 {
                     KategorileriYukle();
+                    lstKategoriler.SelectedIndex = lstKategoriler.Items.Count - 1;
                 }
             }
         }
@@ -130,6 +151,7 @@ namespace KuzeyYeliTR
                 UrunDuzenle urunDuzenle = new UrunDuzenle(secilenUrun);
                 urunDuzenle.ShowDialog();
             }
+
         }
 
         private void btnUrunSil_Click(object sender, EventArgs e)
@@ -141,8 +163,8 @@ namespace KuzeyYeliTR
                 cmd.Parameters.AddWithValue("@id", urunler.UrunId);
                 cmd.ExecuteNonQuery();
             }
-            KategorileriYukle();
             Kategori seciliKategori = (Kategori)lstKategoriler.SelectedItem;
+           // KategorileriYukle();
             UrunleriListele(seciliKategori.KategoriId);
         }
     }

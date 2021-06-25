@@ -34,18 +34,20 @@ namespace KuzeyYeliTR
         private void InitializeComponent()
         {
             this.lstKategoriler = new System.Windows.Forms.ListBox();
-            this.pboResimler = new System.Windows.Forms.PictureBox();
             this.dgvUrunler = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewImageColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnKategoriDuzenle = new System.Windows.Forms.Button();
             this.btnKategoriSil = new System.Windows.Forms.Button();
             this.btnUrunDuzenle = new System.Windows.Forms.Button();
             this.btnUrunSil = new System.Windows.Forms.Button();
             this.btnUrunEkle = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pboResimler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUrunler)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,33 +55,82 @@ namespace KuzeyYeliTR
             // 
             this.lstKategoriler.FormattingEnabled = true;
             this.lstKategoriler.ItemHeight = 16;
-            this.lstKategoriler.Location = new System.Drawing.Point(12, 275);
+            this.lstKategoriler.Location = new System.Drawing.Point(1, 51);
             this.lstKategoriler.Name = "lstKategoriler";
-            this.lstKategoriler.Size = new System.Drawing.Size(196, 260);
+            this.lstKategoriler.Size = new System.Drawing.Size(207, 484);
             this.lstKategoriler.TabIndex = 0;
             this.lstKategoriler.SelectedIndexChanged += new System.EventHandler(this.lstKategoriler_SelectedIndexChanged);
             // 
-            // pboResimler
-            // 
-            this.pboResimler.Location = new System.Drawing.Point(15, 47);
-            this.pboResimler.Name = "pboResimler";
-            this.pboResimler.Size = new System.Drawing.Size(193, 197);
-            this.pboResimler.TabIndex = 1;
-            this.pboResimler.TabStop = false;
-            // 
             // dgvUrunler
             // 
+            this.dgvUrunler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUrunler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUrunler.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
             this.dgvUrunler.Location = new System.Drawing.Point(214, 53);
             this.dgvUrunler.MultiSelect = false;
             this.dgvUrunler.Name = "dgvUrunler";
             this.dgvUrunler.ReadOnly = true;
             this.dgvUrunler.RowHeadersVisible = false;
             this.dgvUrunler.RowHeadersWidth = 51;
-            this.dgvUrunler.RowTemplate.Height = 24;
+            this.dgvUrunler.RowTemplate.Height = 60;
             this.dgvUrunler.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUrunler.Size = new System.Drawing.Size(693, 485);
+            this.dgvUrunler.Size = new System.Drawing.Size(763, 482);
             this.dgvUrunler.TabIndex = 2;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "UrunId";
+            this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "UrunAd";
+            this.Column2.HeaderText = "Ürün Adı";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "BirimFiyat";
+            this.Column3.HeaderText = "Birim Fiyat (₺)";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "StokAdet";
+            this.Column4.HeaderText = "Stok Adedi";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Resim";
+            this.Column5.HeaderText = "Ürün Görseli";
+            this.Column5.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column5.Width = 125;
             // 
             // label1
             // 
@@ -95,21 +146,11 @@ namespace KuzeyYeliTR
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(12, 254);
+            this.label2.Location = new System.Drawing.Point(8, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "KATEGORİLER";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(12, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "ÜRÜN RESİMLERİ";
             // 
             // btnKategoriDuzenle
             // 
@@ -133,7 +174,7 @@ namespace KuzeyYeliTR
             // 
             // btnUrunDuzenle
             // 
-            this.btnUrunDuzenle.Location = new System.Drawing.Point(319, 544);
+            this.btnUrunDuzenle.Location = new System.Drawing.Point(349, 544);
             this.btnUrunDuzenle.Name = "btnUrunDuzenle";
             this.btnUrunDuzenle.Size = new System.Drawing.Size(198, 23);
             this.btnUrunDuzenle.TabIndex = 8;
@@ -143,7 +184,7 @@ namespace KuzeyYeliTR
             // 
             // btnUrunSil
             // 
-            this.btnUrunSil.Location = new System.Drawing.Point(550, 544);
+            this.btnUrunSil.Location = new System.Drawing.Point(580, 544);
             this.btnUrunSil.Name = "btnUrunSil";
             this.btnUrunSil.Size = new System.Drawing.Size(198, 23);
             this.btnUrunSil.TabIndex = 9;
@@ -165,7 +206,7 @@ namespace KuzeyYeliTR
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(169, 250);
+            this.button1.Location = new System.Drawing.Point(165, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(39, 24);
             this.button1.TabIndex = 11;
@@ -177,22 +218,19 @@ namespace KuzeyYeliTR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 613);
+            this.ClientSize = new System.Drawing.Size(998, 619);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUrunEkle);
             this.Controls.Add(this.btnUrunSil);
             this.Controls.Add(this.btnUrunDuzenle);
             this.Controls.Add(this.btnKategoriSil);
             this.Controls.Add(this.btnKategoriDuzenle);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvUrunler);
-            this.Controls.Add(this.pboResimler);
             this.Controls.Add(this.lstKategoriler);
             this.Name = "Form1";
             this.Text = "Market Uygulaması";
-            ((System.ComponentModel.ISupportInitialize)(this.pboResimler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUrunler)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,17 +240,20 @@ namespace KuzeyYeliTR
         #endregion
 
         private System.Windows.Forms.ListBox lstKategoriler;
-        private System.Windows.Forms.PictureBox pboResimler;
         private System.Windows.Forms.DataGridView dgvUrunler;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnKategoriDuzenle;
         private System.Windows.Forms.Button btnKategoriSil;
         private System.Windows.Forms.Button btnUrunDuzenle;
         private System.Windows.Forms.Button btnUrunSil;
         private System.Windows.Forms.Button btnUrunEkle;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewImageColumn Column5;
     }
 }
 

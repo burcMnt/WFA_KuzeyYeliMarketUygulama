@@ -57,7 +57,7 @@ namespace KuzeyYeliTR
             this.btnUrunTamam.Name = "btnUrunTamam";
             this.btnUrunTamam.Size = new System.Drawing.Size(154, 23);
             this.btnUrunTamam.TabIndex = 24;
-            this.btnUrunTamam.Text = "TAMAM";
+            this.btnUrunTamam.Text = "KAYDET";
             this.btnUrunTamam.UseVisualStyleBackColor = true;
             this.btnUrunTamam.Click += new System.EventHandler(this.btnUrunTamam_Click);
             // 
@@ -98,6 +98,7 @@ namespace KuzeyYeliTR
             // 
             // KategoriDuzenle
             // 
+            this.AcceptButton = this.btnUrunTamam;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 200);
@@ -108,6 +109,7 @@ namespace KuzeyYeliTR
             this.Controls.Add(this.txtKategoriId);
             this.Controls.Add(this.label1);
             this.Name = "KategoriDuzenle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Kategori Duzenle";
             this.ResumeLayout(false);
             this.PerformLayout();
